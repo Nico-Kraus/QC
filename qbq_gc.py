@@ -36,21 +36,18 @@ while solving:
 
     Q = {}
 
-    #Basic weight for all QuBits
+    #Basic weight for all QuBits (for right node states)
     for node in G.nodes:
         for i in range(num_colors):
             Q[(num_colors * node + i, num_colors * node + i)] = v1
 
-    print("Q = " + str(Q))
-
+    #Weights in nodes (for right node states)
     for node in G.nodes:
         for i in range(num_colors - 1):
             for j in range(num_colors - 1 - i):
                 Q[(num_colors * node + i ,num_colors * node + 1 + i + j)] = v2
 
-    print("Q = " + str(Q))
-
-    # +2 for all wrong edges
+    # +2 for all wrong edges (has a 1 on the same place)
     for edge in G.edges:
         for i in range(num_colors):
             Q[(num_colors * edge[0] + i,num_colors * edge[1] + i)] = v3
